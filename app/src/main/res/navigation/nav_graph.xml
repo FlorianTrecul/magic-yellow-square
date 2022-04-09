@@ -9,6 +9,15 @@
         android:id="@+id/surfaceFragment"
         android:name="com.example.magicyellowsquare.presentation.surface.MagicSurfaceFragment"
         android:label="fragment_magic_surface"
-        tools:layout="@layout/fragment_magic_surface" />
+        tools:layout="@layout/fragment_magic_surface" >
+        <action
+            android:id="@+id/action_surfaceFragment_to_magicDataFragment"
+            app:destination="@id/magicDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/magicDataFragment"
+        android:name="com.example.magicyellowsquare.presentation.data.MagicDataFragment"
+        android:label="fragment_magic_data"
+        tools:layout="@layout/fragment_magic_data" />
 
 </navigation>

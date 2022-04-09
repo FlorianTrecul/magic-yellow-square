@@ -2,4 +2,7 @@
     <!-- ALL -->
     <string name="app_name">MagicYellowSquare</string>
 
+    <!-- MagicSurface -->
+    <string name="surface_button_title">Historique des données</string>
+
 </resources>

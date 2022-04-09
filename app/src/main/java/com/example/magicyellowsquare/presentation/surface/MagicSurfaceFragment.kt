@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.magicyellowsquare.databinding.FragmentMagicSurfaceBinding
 import com.example.magicyellowsquare.presentation.BaseFragment
+import com.example.magicyellowsquare.util.observeInLifecycle
 import com.example.magicyellowsquare.util.toStringDate
 import dagger.hilt.android.AndroidEntryPoint
-
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class MagicSurfaceFragment: BaseFragment<FragmentMagicSurfaceBinding, MagicSurfaceViewModel>(), View.OnTouchListener {
@@ -24,7 +26,32 @@ class MagicSurfaceFragment: BaseFragment<FragmentMagicSurfaceBinding, MagicSurfa
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.dragView.setOnTouchListener(this)
+        binding.dragViewSurface.setOnTouchListener(this)
+        setupUi()
+    }
+
+    private fun setupUi() {
+        setupButton()
+        collectEvents()
+    }
+
+    private fun setupButton() = with(binding) {
+        buttonDataHistorySurface.setOnClickListener {
+            viewModel.onNavigateToMagicDataScreen()
+        }
+    }
+
+    private fun collectEvents() {
+        viewModel.magicalSurfaceFlowEvent
+            .onEach { event ->
+                when (event) {
+                    is MagicSurfaceViewModel.MagicSurfaceUiEvent.NavigateToMagicDataScreen -> {
+                        val action = MagicSurfaceFragmentDirections.actionSurfaceFragmentToMagicDataFragment()
+                        findNavController().navigate(action)
+                    }
+                }
+            }
+            .observeInLifecycle(viewLifecycleOwner)
     }
 
     override fun onTouch(view: View, event: MotionEvent): Boolean {
