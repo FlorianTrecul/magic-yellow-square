@@ -1,5 +1,6 @@
 package com.example.magicyellowsquare.domain.use_case
 
 data class MagicDataUseCases(
-    val addMagicData: AddMagicDataUseCase
+    val addMagicData: AddMagicDataUseCase,
+    val getAllMagicData: GetAllMagicDataUseCase
 )

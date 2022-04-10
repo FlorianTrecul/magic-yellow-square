@@ -65,6 +65,7 @@ class MagicSurfaceFragment: BaseFragment<FragmentMagicSurfaceBinding, MagicSurfa
                 view.x = event.rawX + dX
             }
             MotionEvent.ACTION_UP -> {
+                viewModel.onEvent(MagicSurfaceEvent.SaveMagicData(view.x.toDouble(), view.y.toDouble()))
                 Toast.makeText(requireContext(), "X : ${view.x} && Y : ${view.y} && Date : ${toStringDate()}", Toast.LENGTH_SHORT).show()
             }
             else -> return false

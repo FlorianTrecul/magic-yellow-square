@@ -2,6 +2,10 @@
     <!-- ALL -->
     <string name="app_name">MagicYellowSquare</string>
 
+    <!-- Error Message -->
+    <string name="error_message_title_unknown">Erreur</string>
+    <string name="error_message_info_unknown">Une erreur inconnue est survenue.</string>
+
     <!-- MagicSurface -->
     <string name="surface_button_title">Historique des données</string>
 

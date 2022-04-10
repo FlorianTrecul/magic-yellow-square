@@ -9,7 +9,6 @@ import com.example.magicyellowsquare.databinding.FragmentMagicDataBinding
 import com.example.magicyellowsquare.presentation.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MagicDataFragment: BaseFragment<FragmentMagicDataBinding, MagicDataViewModel>() {
 
@@ -17,7 +16,7 @@ class MagicDataFragment: BaseFragment<FragmentMagicDataBinding, MagicDataViewMod
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.onEvent(MagicDataEvent.GetAllMagicData)
     }
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?) =

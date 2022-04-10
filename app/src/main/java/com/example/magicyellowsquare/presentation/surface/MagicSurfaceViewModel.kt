@@ -25,9 +25,7 @@ class MagicSurfaceViewModel @Inject constructor(
 
     fun onEvent(event: MagicSurfaceEvent) {
         when(event) {
-            is MagicSurfaceEvent.SaveMagicData -> {
-                saveMagicData(MagicData(null, event.positionX, event.positionY, System.currentTimeMillis()))
-            }
+            is MagicSurfaceEvent.SaveMagicData -> saveMagicData(MagicData(null, event.positionX, event.positionY, System.currentTimeMillis()))
         }
     }
 
