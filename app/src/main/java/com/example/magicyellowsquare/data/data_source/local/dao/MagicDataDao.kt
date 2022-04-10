@@ -9,7 +9,7 @@ import com.example.magicyellowsquare.data.data_source.entity.MagicDataEntity
 @Dao
 interface MagicDataDao {
 
-    @Query("SELECT * FROM MagicDataEntity")
+    @Query("SELECT * FROM MagicDataEntity ORDER BY date DESC")
     suspend fun getAllMagicData(): List<MagicDataEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

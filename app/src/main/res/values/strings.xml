@@ -6,7 +6,12 @@
     <string name="error_message_title_unknown">Erreur</string>
     <string name="error_message_info_unknown">Une erreur inconnue est survenue.</string>
 
+    <!-- MagicData-->
+    <string name="magic_data_date">Date : %1$s</string>
+    <string name="magic_data_position_x">Position X : %1$s</string>
+    <string name="magic_data_position_y">Position Y : %1$s</string>
+
     <!-- MagicSurface -->
-    <string name="surface_button_title">Historique des données</string>
+    <string name="magic_surface_button_title">Historique des données</string>
 
 </resources>

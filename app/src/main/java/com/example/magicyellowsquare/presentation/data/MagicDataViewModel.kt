@@ -8,7 +8,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,10 +27,7 @@ class MagicDataViewModel @Inject constructor(
                 when (magicData) {
                     is Resource.Empty -> _state.value = MagicDataUiState.Empty
                     is Resource.Loading -> _state.value = MagicDataUiState.Loading
-                    is Resource.Success -> {
-                        _state.value = MagicDataUiState.Success(magicData.data)
-                        Timber.d("getAllMagicData ${magicData.data}")
-                    }
+                    is Resource.Success -> _state.value = MagicDataUiState.Success(magicData.data)
                     is Resource.Error -> {
                         _state.value = MagicDataUiState.Error
                         onShowDialogMessage(magicData.title, magicData.message)
