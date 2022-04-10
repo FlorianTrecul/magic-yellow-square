@@ -2,17 +2,34 @@ package com.example.magicyellowsquare.presentation.surface
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.magicyellowsquare.domain.model.MagicData
+import com.example.magicyellowsquare.domain.use_case.MagicDataUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MagicSurfaceViewModel @Inject constructor(): ViewModel() {
+class MagicSurfaceViewModel @Inject constructor(
+    private val magicDataUseCases: MagicDataUseCases
+): ViewModel() {
 
     private val _magicalSurfaceFlowEvent = MutableSharedFlow<MagicSurfaceUiEvent>()
     val magicalSurfaceFlowEvent = _magicalSurfaceFlowEvent.asSharedFlow()
+
+    private fun saveMagicData(magicData: MagicData) = viewModelScope.launch(Dispatchers.IO) {
+        magicDataUseCases.addMagicData(magicData)
+    }
+
+    fun onEvent(event: MagicSurfaceEvent) {
+        when(event) {
+            is MagicSurfaceEvent.SaveMagicData -> {
+                saveMagicData(MagicData(null, event.positionX, event.positionY, System.currentTimeMillis()))
+            }
+        }
+    }
 
     fun onNavigateToMagicDataScreen() = viewModelScope.launch {
         _magicalSurfaceFlowEvent.emit(MagicSurfaceUiEvent.NavigateToMagicDataScreen)
