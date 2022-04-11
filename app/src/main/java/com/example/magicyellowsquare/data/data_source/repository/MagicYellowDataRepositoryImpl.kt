@@ -34,6 +34,16 @@ class MagicYellowDataRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getLastMagicData(): Flow<MagicData> = flow {
+        val response = magicDataDao.getLastMagicData()
+        if (response != null) {
+            emit(magicDataMapper.mapFromEntity(response))
+        } else {
+            emit(MagicData(null, 0.0, 0.0, System.currentTimeMillis()))
+        }
+
+    }
+
     override suspend fun insertMagicData(magicData: MagicData) {
         magicDataDao.insertMagicData(magicDataMapper.mapToEntity(magicData))
     }

@@ -12,6 +12,9 @@ interface MagicDataDao {
     @Query("SELECT * FROM MagicDataEntity ORDER BY date DESC")
     suspend fun getAllMagicData(): List<MagicDataEntity>
 
+    @Query("SELECT * FROM MagicDataEntity ORDER BY date DESC LIMIT 1")
+    suspend fun getLastMagicData(): MagicDataEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMagicData(magicDataEntity: MagicDataEntity)
 }

@@ -8,5 +8,7 @@ interface MagicYellowDataRepository {
 
     fun getAllMagicData(): Flow<Resource<List<MagicData>>>
 
+    fun getLastMagicData(): Flow<MagicData>
+
     suspend fun insertMagicData(magicData: MagicData)
 }

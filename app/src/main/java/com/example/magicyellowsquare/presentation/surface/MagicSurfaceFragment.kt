@@ -16,7 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class MagicSurfaceFragment: BaseFragment<FragmentMagicSurfaceBinding, MagicSurfaceViewModel>(), View.OnTouchListener {
+class MagicSurfaceFragment : BaseFragment<FragmentMagicSurfaceBinding, MagicSurfaceViewModel>(),
+    View.OnTouchListener {
 
     override val viewModel: MagicSurfaceViewModel by viewModels()
 
@@ -32,7 +33,7 @@ class MagicSurfaceFragment: BaseFragment<FragmentMagicSurfaceBinding, MagicSurfa
 
     private fun setupUi() {
         setupButton()
-        collectEvents()
+        subscribeToCollects()
     }
 
     private fun setupButton() = with(binding) {
@@ -41,12 +42,26 @@ class MagicSurfaceFragment: BaseFragment<FragmentMagicSurfaceBinding, MagicSurfa
         }
     }
 
+    private fun subscribeToCollects() = with(binding) {
+        viewModel.getLastMagicData
+            .onEach { magicData ->
+                dragViewSurface.apply {
+                    x = magicData.positionX.toFloat()
+                    y = magicData.positionY.toFloat()
+                }
+            }
+            .observeInLifecycle(viewLifecycleOwner)
+
+        collectEvents()
+    }
+
     private fun collectEvents() {
         viewModel.magicalSurfaceFlowEvent
             .onEach { event ->
                 when (event) {
                     is MagicSurfaceViewModel.MagicSurfaceUiEvent.NavigateToMagicDataScreen -> {
-                        val action = MagicSurfaceFragmentDirections.actionSurfaceFragmentToMagicDataFragment()
+                        val action =
+                            MagicSurfaceFragmentDirections.actionSurfaceFragmentToMagicDataFragment()
                         findNavController().navigate(action)
                     }
                 }
@@ -65,8 +80,17 @@ class MagicSurfaceFragment: BaseFragment<FragmentMagicSurfaceBinding, MagicSurfa
                 view.x = event.rawX + dX
             }
             MotionEvent.ACTION_UP -> {
-                viewModel.onEvent(MagicSurfaceEvent.SaveMagicData(view.x.toDouble(), view.y.toDouble()))
-                Toast.makeText(requireContext(), "X : ${view.x} && Y : ${view.y} && Date : ${toStringDate()}", Toast.LENGTH_SHORT).show()
+                viewModel.onEvent(
+                    MagicSurfaceEvent.SaveMagicData(
+                        view.x.toDouble(),
+                        view.y.toDouble()
+                    )
+                )
+                Toast.makeText(
+                    requireContext(),
+                    "X : ${view.x} && Y : ${view.y} && Date : ${toStringDate()}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             else -> return false
         }

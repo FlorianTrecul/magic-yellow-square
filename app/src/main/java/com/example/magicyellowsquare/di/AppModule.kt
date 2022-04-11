@@ -3,6 +3,7 @@ package com.example.magicyellowsquare.di
 import com.example.magicyellowsquare.domain.repository.MagicYellowDataRepository
 import com.example.magicyellowsquare.domain.use_case.AddMagicDataUseCase
 import com.example.magicyellowsquare.domain.use_case.GetAllMagicDataUseCase
+import com.example.magicyellowsquare.domain.use_case.GetLastMagicDataUseCase
 import com.example.magicyellowsquare.domain.use_case.MagicDataUseCases
 import dagger.Module
 import dagger.Provides
@@ -21,7 +22,8 @@ object AppModule {
     ): MagicDataUseCases {
         return MagicDataUseCases(
             addMagicData = AddMagicDataUseCase(magicYellowDataRepository),
-            getAllMagicData = GetAllMagicDataUseCase(magicYellowDataRepository)
+            getAllMagicData = GetAllMagicDataUseCase(magicYellowDataRepository),
+            getLastMagicData = GetLastMagicDataUseCase(magicYellowDataRepository)
         )
     }
 

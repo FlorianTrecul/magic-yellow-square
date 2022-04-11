@@ -19,6 +19,8 @@ class MagicSurfaceViewModel @Inject constructor(
     private val _magicalSurfaceFlowEvent = MutableSharedFlow<MagicSurfaceUiEvent>()
     val magicalSurfaceFlowEvent = _magicalSurfaceFlowEvent.asSharedFlow()
 
+    val getLastMagicData get() = magicDataUseCases.getLastMagicData()
+
     private fun saveMagicData(magicData: MagicData) = viewModelScope.launch(Dispatchers.IO) {
         magicDataUseCases.addMagicData(magicData)
     }
