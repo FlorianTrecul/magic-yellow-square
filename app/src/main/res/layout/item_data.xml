@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dp16"
+    android:layout_marginTop="@dimen/dp8"
+    android:layout_marginEnd="@dimen/dp16"
+    android:layout_marginBottom="@dimen/dp8"
+    app:cardElevation="@dimen/dp4">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp8">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/date_item_data"
+            android:layout_width="@dimen/dp0"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp8"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="quasi quae est modi quis quam in impedit" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/position_x_item_data"
+            android:layout_width="@dimen/dp0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp16"
+            app:layout_constraintEnd_toEndOf="@id/date_item_data"
+            app:layout_constraintStart_toStartOf="@id/date_item_data"
+            app:layout_constraintTop_toBottomOf="@id/date_item_data"
+            tools:text="quasi quae est modi quis quam in impedit" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/position_y_item_data"
+            android:layout_width="@dimen/dp0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+            app:layout_constraintEnd_toEndOf="@id/position_x_item_data"
+            app:layout_constraintStart_toStartOf="@id/date_item_data"
+            app:layout_constraintTop_toBottomOf="@id/position_x_item_data"
+            tools:text="quasi quae est modi quis quam in impedit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

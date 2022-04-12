@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/surfaceFragment">
+
+    <fragment
+        android:id="@+id/surfaceFragment"
+        android:name="com.example.magicyellowsquare.presentation.surface.MagicSurfaceFragment"
+        android:label="fragment_magic_surface"
+        tools:layout="@layout/fragment_magic_surface">
+        <action
+            android:id="@+id/action_surfaceFragment_to_magicDataFragment"
+            app:destination="@id/magicDataFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/surfaceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/magicDataFragment"
+        android:name="com.example.magicyellowsquare.presentation.data.MagicDataFragment"
+        android:label="fragment_magic_data"
+        tools:layout="@layout/fragment_magic_data" />
+
+</navigation>
