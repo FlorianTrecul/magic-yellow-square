@@ -10,8 +10,10 @@
     <string name="magic_data_date">Date : %1$s</string>
     <string name="magic_data_position_x">Position X : %1$s</string>
     <string name="magic_data_position_y">Position Y : %1$s</string>
+    <string name="magic_data_empty">Aucune donnée</string>
 
     <!-- MagicSurface -->
     <string name="magic_surface_button_title">Historique des données</string>
+    <string name="magic_surface_toast">PositionX : %1$f et PositionY : %2$f à la date du %3$s</string>
 
 </resources>

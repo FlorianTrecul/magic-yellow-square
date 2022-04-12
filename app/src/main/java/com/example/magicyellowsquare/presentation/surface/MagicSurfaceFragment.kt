@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.magicyellowsquare.R
 import com.example.magicyellowsquare.databinding.FragmentMagicSurfaceBinding
 import com.example.magicyellowsquare.presentation.BaseFragment
 import com.example.magicyellowsquare.util.observeInLifecycle
+import com.example.magicyellowsquare.util.showToast
 import com.example.magicyellowsquare.util.toStringDate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
@@ -26,6 +28,11 @@ class MagicSurfaceFragment : BaseFragment<FragmentMagicSurfaceBinding, MagicSurf
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.apply {
+            show()
+            title = getString(R.string.app_name)
+            setDisplayShowTitleEnabled(true)
+        }
 
         binding.dragViewSurface.setOnTouchListener(this)
         setupUi()
@@ -64,6 +71,9 @@ class MagicSurfaceFragment : BaseFragment<FragmentMagicSurfaceBinding, MagicSurf
                             MagicSurfaceFragmentDirections.actionSurfaceFragmentToMagicDataFragment()
                         findNavController().navigate(action)
                     }
+                    is MagicSurfaceViewModel.MagicSurfaceUiEvent.ShowToastMessage -> context?.showToast(
+                        event.message
+                    )
                 }
             }
             .observeInLifecycle(viewLifecycleOwner)
@@ -86,11 +96,14 @@ class MagicSurfaceFragment : BaseFragment<FragmentMagicSurfaceBinding, MagicSurf
                         view.y.toDouble()
                     )
                 )
-                Toast.makeText(
-                    requireContext(),
-                    "X : ${view.x} && Y : ${view.y} && Date : ${toStringDate()}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                viewModel.onShowToastMessage(
+                    getString(
+                        R.string.magic_surface_toast,
+                        view.x,
+                        view.y,
+                        toStringDate()
+                    )
+                )
             }
             else -> return false
         }

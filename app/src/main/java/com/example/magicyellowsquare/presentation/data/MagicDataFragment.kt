@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.magicyellowsquare.R
 import com.example.magicyellowsquare.databinding.FragmentMagicDataBinding
 import com.example.magicyellowsquare.presentation.BaseFragment
 import com.example.magicyellowsquare.util.hide
@@ -23,6 +25,12 @@ class MagicDataFragment: BaseFragment<FragmentMagicDataBinding, MagicDataViewMod
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.apply {
+            title = getString(R.string.app_name)
+            setDisplayShowTitleEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+            show()
+        }
 
         setupUi()
     }

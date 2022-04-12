@@ -2,7 +2,7 @@ package com.example.magicyellowsquare.di
 
 import android.content.Context
 import com.example.magicyellowsquare.data.data_source.local.dao.MagicDataDao
-import com.example.magicyellowsquare.data.data_source.local.db.MagicYellowDatabase
+import com.example.magicyellowsquare.data.data_source.local.db.MagicYellowSquareDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,11 +16,11 @@ object PersistenceModule {
 
     @Singleton
     @Provides
-    fun provideMagicYellowSquareDatabase(@ApplicationContext appContext: Context): MagicYellowDatabase =
-        MagicYellowDatabase.getDatabaseInstance(appContext)
+    fun provideMagicYellowSquareDatabase(@ApplicationContext appContext: Context): MagicYellowSquareDatabase =
+        MagicYellowSquareDatabase.getDatabaseInstance(appContext)
 
     @Singleton
     @Provides
-    fun provideMagicDataDao(magicYellowDatabase: MagicYellowDatabase): MagicDataDao =
-        magicYellowDatabase.magicDataDao()
+    fun provideMagicDataDao(magicYellowSquareDatabase: MagicYellowSquareDatabase): MagicDataDao =
+        magicYellowSquareDatabase.magicDataDao()
 }

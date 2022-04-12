@@ -35,7 +35,12 @@ class MagicSurfaceViewModel @Inject constructor(
         _magicalSurfaceFlowEvent.emit(MagicSurfaceUiEvent.NavigateToMagicDataScreen)
     }
 
+    fun onShowToastMessage(message: String) = viewModelScope.launch {
+        _magicalSurfaceFlowEvent.emit(MagicSurfaceUiEvent.ShowToastMessage(message))
+    }
+
     sealed class MagicSurfaceUiEvent {
         object NavigateToMagicDataScreen : MagicSurfaceUiEvent()
+        data class ShowToastMessage(val message: String) : MagicSurfaceUiEvent()
     }
 }

@@ -9,10 +9,13 @@
         android:id="@+id/surfaceFragment"
         android:name="com.example.magicyellowsquare.presentation.surface.MagicSurfaceFragment"
         android:label="fragment_magic_surface"
-        tools:layout="@layout/fragment_magic_surface" >
+        tools:layout="@layout/fragment_magic_surface">
         <action
             android:id="@+id/action_surfaceFragment_to_magicDataFragment"
-            app:destination="@id/magicDataFragment" />
+            app:destination="@id/magicDataFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/surfaceFragment" />
     </fragment>
     <fragment
         android:id="@+id/magicDataFragment"

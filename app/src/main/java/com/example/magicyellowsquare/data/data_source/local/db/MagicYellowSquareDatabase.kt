@@ -9,16 +9,16 @@ import com.example.magicyellowsquare.data.data_source.local.dao.MagicDataDao
 import com.example.magicyellowsquare.util.Constants.DATABASE_NAME
 
 @Database(entities = [MagicDataEntity::class], version = 1)
-abstract class MagicYellowDatabase: RoomDatabase() {
+abstract class MagicYellowSquareDatabase: RoomDatabase() {
 
     abstract fun magicDataDao(): MagicDataDao
 
     companion object {
 
         @Volatile
-        private var INSTANCE: MagicYellowDatabase? = null
+        private var INSTANCE: MagicYellowSquareDatabase? = null
 
-        fun getDatabaseInstance(context: Context): MagicYellowDatabase {
+        fun getDatabaseInstance(context: Context): MagicYellowSquareDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -27,7 +27,7 @@ abstract class MagicYellowDatabase: RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    MagicYellowDatabase::class.java,
+                    MagicYellowSquareDatabase::class.java,
                     DATABASE_NAME
                 )
                     .fallbackToDestructiveMigration()
